@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Copy, Check, Twitter, Linkedin, MessageSquare, Edit2 } from "lucide-react";
+import { Copy, Check, Twitter, Linkedin, MessageSquare, Edit2, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OutputDisplayProps {
@@ -11,6 +11,7 @@ interface OutputDisplayProps {
     twitter: string;
     linkedin: string;
     reddit: string;
+    instagram: string;
   };
 }
 
@@ -64,6 +65,14 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/20",
     },
+    {
+      id: "instagram",
+      name: "Instagram",
+      icon: Instagram,
+      color: "text-pink-500",
+      bgColor: "bg-pink-500/10",
+      borderColor: "border-pink-500/20",
+    },
   ];
 
   return (
@@ -82,7 +91,7 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 p-1">
+          <TabsList className="grid w-full grid-cols-4 p-1">
             {platforms.map((platform) => {
               const Icon = platform.icon;
               return (

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { Sparkles, Twitter, Linkedin, MessageSquare } from "lucide-react";
+import { Sparkles, Twitter, Linkedin, MessageSquare, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { OutputDisplay } from "@/components/OutputDisplay";
@@ -138,7 +138,7 @@ export default function Index() {
 
               <div className="flex items-center gap-4 pt-4 border-t border-border/50">
                 <span className="text-sm text-muted-foreground">Generate for:</span>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20">
                     <Twitter className="w-4 h-4 text-blue-500" />
                     <span className="text-sm font-medium text-blue-500">Twitter</span>
@@ -150,6 +150,10 @@ export default function Index() {
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20">
                     <MessageSquare className="w-4 h-4 text-orange-500" />
                     <span className="text-sm font-medium text-orange-500">Reddit</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20">
+                    <Instagram className="w-4 h-4 text-pink-500" />
+                    <span className="text-sm font-medium text-pink-500">Instagram</span>
                   </div>
                 </div>
               </div>

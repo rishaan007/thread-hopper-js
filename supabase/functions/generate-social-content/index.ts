@@ -84,15 +84,39 @@ serve(async (req) => {
       }),
     });
 
+    // Generate Instagram caption
+    const instagramResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            role: 'system',
+            content: `You are a social media expert. Convert content into an engaging Instagram caption with a ${tone} tone. Make it visual and inspiring. Use emojis, line breaks for readability, and include relevant hashtags at the end (5-10 hashtags).`
+          },
+          {
+            role: 'user',
+            content: `Convert this content into an Instagram caption:\n\n${content}`
+          }
+        ],
+      }),
+    });
+
     const twitterData = await twitterResponse.json();
     const linkedinData = await linkedinResponse.json();
     const redditData = await redditResponse.json();
+    const instagramData = await instagramResponse.json();
 
     return new Response(
       JSON.stringify({
         twitter: twitterData.choices[0].message.content,
         linkedin: linkedinData.choices[0].message.content,
         reddit: redditData.choices[0].message.content,
+        instagram: instagramData.choices[0].message.content,
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
