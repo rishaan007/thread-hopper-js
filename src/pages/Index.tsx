@@ -9,11 +9,18 @@ import { supabase } from "@/integrations/supabase/client";
 import { OutputDisplay } from "@/components/OutputDisplay";
 import { GenerationHistory } from "@/components/GenerationHistory";
 
+interface GeneratedContent {
+  twitter: string;
+  linkedin: string;
+  reddit: string;
+  instagram: string;
+}
+
 export default function Index() {
   const [content, setContent] = useState("");
   const [tone, setTone] = useState("professional");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedContent, setGeneratedContent] = useState(null);
+  const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
   const { toast } = useToast();
 
   const handleGenerate = async () => {
