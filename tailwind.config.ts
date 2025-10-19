@@ -107,6 +107,24 @@ export default {
           "50%": {
             boxShadow: "0 0 30px hsl(var(--primary) / 0.5)"
           }
+        },
+        "slide-in-down": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)"
+          },
+          "50%": {
+            transform: "translateY(-10px)"
+          }
         }
       },
       animation: {
@@ -115,6 +133,8 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
         "glow": "glow 2s ease-in-out infinite",
+        "slide-in-down": "slide-in-down 0.5s ease-out",
+        "float": "float 3s ease-in-out infinite",
       },
     },
   },

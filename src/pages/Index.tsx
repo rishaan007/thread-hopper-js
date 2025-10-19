@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { OutputDisplay } from "@/components/OutputDisplay";
 import { GenerationHistory } from "@/components/GenerationHistory";
+import { ThreeBackground } from "@/components/ThreeBackground";
 
 interface GeneratedContent {
   twitter: string;
@@ -59,15 +60,16 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-purple-50/30 to-background">
+    <div className="min-h-screen bg-background relative">
+      <ThreeBackground />
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-card/80 backdrop-blur-md sticky top-0 z-50 animate-slide-in-down">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center animate-glow">
-              <Sparkles className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center animate-glow hover:scale-110 transition-transform cursor-pointer">
+              <Sparkles className="w-5 h-5 text-white animate-pulse" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-purple-400 to-primary-glow bg-clip-text text-transparent animate-fade-in">
               ThreadHopper
             </h1>
           </div>
@@ -78,20 +80,20 @@ export default function Index() {
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Hero Section */}
           <div className="text-center space-y-4 animate-fade-in">
-            <h2 className="text-5xl font-bold tracking-tight">
+            <h2 className="text-5xl font-bold tracking-tight animate-slide-up">
               Transform Your Content Into
               <br />
-              <span className="bg-gradient-to-r from-primary via-purple-500 to-primary-glow bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-purple-400 to-primary-glow bg-clip-text text-transparent animate-glow">
                 Engaging Social Posts
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Paste your blog article or write freeform content, and watch it transform into perfectly crafted posts for Twitter, LinkedIn, and Reddit
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              Paste your blog article or write freeform content, and watch it transform into perfectly crafted posts for Twitter, LinkedIn, Reddit, and Instagram
             </p>
           </div>
 
           {/* Input Section */}
-          <Card className="p-8 shadow-card animate-slide-up border-border/50 bg-card/50 backdrop-blur-sm">
+          <Card className="p-8 shadow-card animate-slide-up border-border/50 bg-card/70 backdrop-blur-md hover:shadow-glow transition-all duration-300 hover:border-primary/30">
             <div className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Your Content</label>
@@ -126,7 +128,7 @@ export default function Index() {
                     onClick={handleGenerate}
                     disabled={isGenerating}
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary-glow hover:shadow-glow transition-all"
+                    className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary-glow hover:shadow-glow transition-all hover:scale-105 active:scale-95"
                   >
                     {isGenerating ? (
                       <>
@@ -135,7 +137,7 @@ export default function Index() {
                       </>
                     ) : (
                       <>
-                        <Sparkles className="mr-2 h-5 w-5" />
+                        <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
                         Generate Posts
                       </>
                     )}
@@ -146,19 +148,19 @@ export default function Index() {
               <div className="flex items-center gap-4 pt-4 border-t border-border/50">
                 <span className="text-sm text-muted-foreground">Generate for:</span>
                 <div className="flex flex-wrap gap-3">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all animate-fade-in hover:scale-105 cursor-pointer">
                     <Twitter className="w-4 h-4 text-blue-500" />
                     <span className="text-sm font-medium text-blue-500">Twitter</span>
                   </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-700/10 border border-blue-700/20">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-700/10 border border-blue-700/20 hover:bg-blue-700/20 transition-all animate-fade-in hover:scale-105 cursor-pointer" style={{ animationDelay: '0.1s' }}>
                     <Linkedin className="w-4 h-4 text-blue-700" />
                     <span className="text-sm font-medium text-blue-700">LinkedIn</span>
                   </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 hover:bg-orange-500/20 transition-all animate-fade-in hover:scale-105 cursor-pointer" style={{ animationDelay: '0.2s' }}>
                     <MessageSquare className="w-4 h-4 text-orange-500" />
                     <span className="text-sm font-medium text-orange-500">Reddit</span>
                   </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 hover:bg-pink-500/20 transition-all animate-fade-in hover:scale-105 cursor-pointer" style={{ animationDelay: '0.3s' }}>
                     <Instagram className="w-4 h-4 text-pink-500" />
                     <span className="text-sm font-medium text-pink-500">Instagram</span>
                   </div>
