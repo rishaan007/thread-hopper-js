@@ -24,9 +24,6 @@ export function Navbar() {
           <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
             Features
           </a>
-          <a href="#docs" className="text-sm font-medium hover:text-primary transition-colors">
-            Docs
-          </a>
           <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
             About
           </a>
@@ -48,3 +45,4 @@ export function Navbar() {
     </motion.header>
   );
 }
+*/
