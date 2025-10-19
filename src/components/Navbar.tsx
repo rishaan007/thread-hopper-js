@@ -24,9 +24,6 @@ export function Navbar() {
           <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
             Features
           </a>
-          <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">
-            Pricing
-          </a>
           <a href="#docs" className="text-sm font-medium hover:text-primary transition-colors">
             Docs
           </a>
@@ -34,9 +31,13 @@ export function Navbar() {
             About
           </a>
         </nav>
-
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" className="hidden sm:flex">
+        </div>
+        </motion.header>
+  );
+}
+/*
+      <div className="flex items-center gap-4">
+          <Button variant="ghost" className="hidden sm:flex"> 
             Sign In
           </Button>
           <Button className="bg-gradient-to-r from-primary via-pink-500 to-blue-500 hover:shadow-glow transition-all">
