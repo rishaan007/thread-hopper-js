@@ -8,84 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 250 100% 98%;
-    --foreground: 230 15% 15%;
+    --background: 220 20% 5%;
+    --foreground: 0 0% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 230 15% 15%;
+    --card: 220 18% 8%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 230 15% 15%;
+    --popover: 220 18% 10%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 262 83% 58%;
+    --primary: 262 83% 65%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 262 83% 68%;
+    --primary-glow: 262 83% 75%;
 
-    --secondary: 250 40% 95%;
-    --secondary-foreground: 230 15% 15%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 0 0% 63%;
 
-    --muted: 250 40% 96%;
-    --muted-foreground: 230 15% 45%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 0 0% 63%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 250 30% 90%;
-    --input: 250 30% 90%;
-    --ring: 262 83% 58%;
-
-    --radius: 0.75rem;
-
-    /* Social Platform Colors */
-    --twitter: 203 89% 53%;
-    --linkedin: 201 100% 35%;
-    --reddit: 16 100% 50%;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(262 83% 68%));
-    --gradient-twitter: linear-gradient(135deg, hsl(203 89% 53%), hsl(203 89% 63%));
-    --gradient-linkedin: linear-gradient(135deg, hsl(201 100% 35%), hsl(201 100% 45%));
-    --gradient-reddit: linear-gradient(135deg, hsl(16 100% 50%), hsl(16 100% 60%));
-    
-    /* Shadows */
-    --shadow-glow: 0 10px 40px -10px hsl(262 83% 58% / 0.4);
-    --shadow-card: 0 4px 20px -2px hsl(262 83% 58% / 0.1);
-    
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    --background: 230 20% 8%;
-    --foreground: 0 0% 98%;
-
-    --card: 230 18% 12%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 230 18% 12%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 262 83% 58%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 230 15% 18%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 230 15% 18%;
-    --muted-foreground: 230 10% 60%;
-
-    --accent: 262 83% 58%;
+    --accent: 262 83% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 15% 20%;
-    --input: 230 15% 20%;
-    --ring: 262 83% 58%;
+    --border: 220 15% 18%;
+    --input: 220 15% 15%;
+    --ring: 262 83% 65%;
+
+    --radius: 1rem;
+
+    /* Futuristic Gradient Colors */
+    --violet: 262 83% 65%;
+    --pink: 330 81% 60%;
+    --blue: 217 91% 60%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(90deg, hsl(262 83% 65%), hsl(330 81% 60%), hsl(217 91% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 65% / 0.2), hsl(330 81% 60% / 0.1));
+    --gradient-card: linear-gradient(135deg, hsl(220 18% 10% / 0.8), hsl(220 15% 12% / 0.6));
+    
+    /* Shadows */
+    --shadow-glow: 0 20px 60px -10px hsl(262 83% 65% / 0.5);
+    --shadow-glow-pink: 0 20px 60px -10px hsl(330 81% 60% / 0.4);
+    --shadow-card: 0 8px 32px -4px hsl(220 18% 5% / 0.5);
+    
+    /* Glass effect */
+    --glass-bg: hsl(220 18% 10% / 0.6);
+    --glass-border: hsl(0 0% 100% / 0.1);
   }
 }
 
@@ -95,6 +66,48 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-border {
+    position: relative;
+  }
+
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .glow-border:hover::before {
+    opacity: 1;
   }
 }

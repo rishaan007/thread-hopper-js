@@ -76,15 +76,15 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
   ];
 
   return (
-    <Card className="p-8 shadow-card animate-slide-up border-border/50 bg-card/70 backdrop-blur-md hover:shadow-glow transition-all duration-300">
+    <div className="glass-panel p-8 rounded-3xl max-w-5xl mx-auto hover:shadow-glow transition-all duration-300">
       <div className="space-y-6">
-        <div className="flex items-center justify-between animate-fade-in">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">Generated Posts</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-2xl font-bold gradient-text">Generated Posts</h3>
           <Button
             variant="outline"
             size="sm"
             onClick={() => setIsEditing(!isEditing)}
-            className="hover:scale-105 transition-transform"
+            className="hover:scale-105 transition-transform bg-background/50 border-white/10"
           >
             <Edit2 className="w-4 h-4 mr-2" />
             {isEditing ? "Done Editing" : "Edit"}
@@ -92,7 +92,7 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 p-1 bg-card/50">
+          <TabsList className="grid w-full grid-cols-4 p-1 bg-background/50 border border-white/10">
             {platforms.map((platform) => {
               const Icon = platform.icon;
               return (
@@ -110,7 +110,7 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
 
           {platforms.map((platform) => (
             <TabsContent key={platform.id} value={platform.id} className="space-y-4 animate-fade-in">
-              <div className={`p-6 rounded-lg border ${platform.borderColor} ${platform.bgColor} hover:${platform.bgColor.replace('/10', '/20')} transition-all`}>
+              <div className={`p-6 rounded-2xl border ${platform.borderColor} ${platform.bgColor} backdrop-blur-sm transition-all`}>
                 {isEditing ? (
                   <Textarea
                     value={editedContent[platform.id as keyof typeof editedContent]}
@@ -137,7 +137,7 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
                       platform.name
                     )
                   }
-                  className="flex-1 hover:scale-105 active:scale-95 transition-transform"
+                  className="flex-1 hover:scale-105 active:scale-95 transition-transform bg-background/50 border-white/10"
                   variant="outline"
                 >
                   {copiedPlatform === platform.name ? (
@@ -157,6 +157,6 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
           ))}
         </Tabs>
       </div>
-    </Card>
+    </div>
   );
 }
