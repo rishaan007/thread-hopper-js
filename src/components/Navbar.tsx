@@ -18,13 +18,13 @@ export function Navbar() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#home" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
             Home
           </a>
           <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
             Features
           </a>
-          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/about" className="text-sm font-medium hover:text-primary transition-colors">
             About
           </a>
         </nav>
