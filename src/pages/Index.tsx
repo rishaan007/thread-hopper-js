@@ -231,11 +231,11 @@ export default function Index() {
               </div>
 
               <div className="flex flex-wrap gap-8 text-sm text-muted-foreground">
-                <a href="#home" className="hover:text-primary transition-colors">Home</a>
+                <a href="/" className="hover:text-primary transition-colors">Home</a>
                 <a href="#features" className="hover:text-primary transition-colors">Features</a>
                 <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
                 <a href="#docs" className="hover:text-primary transition-colors">Docs</a>
-                <a href="#about" className="hover:text-primary transition-colors">About</a>
+                <a href="/about" className="hover:text-primary transition-colors">About</a>
               </div>
 
               <p className="text-sm text-muted-foreground">
