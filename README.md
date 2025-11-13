@@ -89,3 +89,14 @@ Co-founder, Byte Brigade
 ## 🪪 License
 
 MIT License © 2025 [Rishaan Kumar](https://github.com/rishaan007)
+
+
+## ✨ Contributors
+
+#### Thanks to all the wonderful contributors 💖
+
+<a href="https://github.com/rishaan007/thread-hopper-js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=rishaan007/thread-hopper-js" />
+</a>
+
+#### See full list of contributor contribution [Contribution Graph](https://github.com/rishaan007/thread-hopper-js/graphs/contributors)  
