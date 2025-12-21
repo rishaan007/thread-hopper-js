@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Copy, Check, Twitter, Linkedin, MessageSquare, Edit2, Instagram } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import {
+  Twitter,
+  Linkedin,
+  MessageSquare,
+  Edit2,
+  Instagram,
+} from "lucide-react";
+// Import the new reusable component
+import { ClipboardButton } from "@/components/ClipboardButton";
 
 interface OutputDisplayProps {
   content: {
@@ -17,28 +23,8 @@ interface OutputDisplayProps {
 
 export function OutputDisplay({ content }: OutputDisplayProps) {
   const [activeTab, setActiveTab] = useState("twitter");
-  const [copiedPlatform, setCopiedPlatform] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
-  const { toast } = useToast();
-
-  const copyToClipboard = async (text: string, platform: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedPlatform(platform);
-      toast({
-        title: "Copied!",
-        description: `${platform} post copied to clipboard`,
-      });
-      setTimeout(() => setCopiedPlatform(null), 2000);
-    } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please try again",
-        variant: "destructive",
-      });
-    }
-  };
 
   const platforms = [
     {
@@ -109,11 +95,19 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
           </TabsList>
 
           {platforms.map((platform) => (
-            <TabsContent key={platform.id} value={platform.id} className="space-y-4 animate-fade-in">
-              <div className={`p-6 rounded-2xl border ${platform.borderColor} ${platform.bgColor} backdrop-blur-sm transition-all`}>
+            <TabsContent
+              key={platform.id}
+              value={platform.id}
+              className="space-y-4 animate-fade-in"
+            >
+              <div
+                className={`p-6 rounded-2xl border ${platform.borderColor} ${platform.bgColor} backdrop-blur-sm transition-all`}
+              >
                 {isEditing ? (
                   <Textarea
-                    value={editedContent[platform.id as keyof typeof editedContent]}
+                    value={
+                      editedContent[platform.id as keyof typeof editedContent]
+                    }
                     onChange={(e) =>
                       setEditedContent({
                         ...editedContent,
@@ -130,28 +124,12 @@ export function OutputDisplay({ content }: OutputDisplayProps) {
               </div>
 
               <div className="flex gap-3">
-                <Button
-                  onClick={() =>
-                    copyToClipboard(
-                      editedContent[platform.id as keyof typeof editedContent],
-                      platform.name
-                    )
+                {/* Replaced the hardcoded button with our new reusable component */}
+                <ClipboardButton
+                  textToCopy={
+                    editedContent[platform.id as keyof typeof editedContent]
                   }
-                  className="flex-1 hover:scale-105 active:scale-95 transition-transform bg-background/50 border-white/10"
-                  variant="outline"
-                >
-                  {copiedPlatform === platform.name ? (
-                    <>
-                      <Check className="w-4 h-4 mr-2 animate-pulse" />
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy to Clipboard
-                    </>
-                  )}
-                </Button>
+                />
               </div>
             </TabsContent>
           ))}

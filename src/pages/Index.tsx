@@ -2,8 +2,24 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Sparkles, Twitter, Linkedin, MessageSquare, Instagram, Zap, Target, Wand2, Eye } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Sparkles,
+  Twitter,
+  Linkedin,
+  MessageSquare,
+  Instagram,
+  Zap,
+  Target,
+  Wand2,
+  Eye,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { OutputDisplay } from "@/components/OutputDisplay";
@@ -22,7 +38,8 @@ export default function Index() {
   const [content, setContent] = useState("");
   const [tone, setTone] = useState("professional");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [generatedContent, setGeneratedContent] =
+    useState<GeneratedContent | null>(null);
   const { toast } = useToast();
 
   const handleGenerate = async () => {
@@ -37,9 +54,12 @@ export default function Index() {
 
     setIsGenerating(true);
     try {
-      const { data, error } = await supabase.functions.invoke('generate-social-content', {
-        body: { content, tone }
-      });
+      const { data, error } = await supabase.functions.invoke(
+        "generate-social-content",
+        {
+          body: { content, tone },
+        }
+      );
 
       if (error) throw error;
 
@@ -49,7 +69,7 @@ export default function Index() {
         description: "Your social media posts are ready",
       });
     } catch (error) {
-      console.error('Error generating content:', error);
+      console.error("Error generating content:", error);
       toast({
         title: "Generation failed",
         description: "Please try again",
@@ -92,7 +112,8 @@ export default function Index() {
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Turn your blog, article, or idea into optimized posts for Twitter, LinkedIn, Reddit, and Instagram with AI-powered intelligence.
+              Turn your blog, article, or idea into optimized posts for Twitter,
+              LinkedIn, Reddit, and Instagram with AI-powered intelligence.
             </p>
 
             {/* Content Input Card */}
@@ -148,19 +169,27 @@ export default function Index() {
                 <div className="flex flex-wrap gap-3 pt-4">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all hover:scale-105">
                     <Twitter className="w-4 h-4 text-blue-400" />
-                    <span className="text-sm font-medium text-blue-400">Twitter</span>
+                    <span className="text-sm font-medium text-blue-400">
+                      Twitter
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-600/20 hover:bg-blue-600/20 transition-all hover:scale-105">
                     <Linkedin className="w-4 h-4 text-blue-500" />
-                    <span className="text-sm font-medium text-blue-500">LinkedIn</span>
+                    <span className="text-sm font-medium text-blue-500">
+                      LinkedIn
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 hover:bg-orange-500/20 transition-all hover:scale-105">
                     <MessageSquare className="w-4 h-4 text-orange-400" />
-                    <span className="text-sm font-medium text-orange-400">Reddit</span>
+                    <span className="text-sm font-medium text-orange-400">
+                      Reddit
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 hover:bg-pink-500/20 transition-all hover:scale-105">
                     <Instagram className="w-4 h-4 text-pink-400" />
-                    <span className="text-sm font-medium text-pink-400">Instagram</span>
+                    <span className="text-sm font-medium text-pink-400">
+                      Instagram
+                    </span>
                   </div>
                 </div>
               </div>
@@ -169,7 +198,10 @@ export default function Index() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="container mx-auto px-4 py-20 md:py-32">
+        <section
+          id="features"
+          className="container mx-auto px-4 py-20 md:py-32"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -177,10 +209,12 @@ export default function Index() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Powerful Features for <span className="gradient-text">Content Creators</span>
+              Powerful Features for{" "}
+              <span className="gradient-text">Content Creators</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to transform your content into engaging social media posts
+              Everything you need to transform your content into engaging social
+              media posts
             </p>
           </motion.div>
 
@@ -227,15 +261,39 @@ export default function Index() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold gradient-text">ThreadHopper</span>
+                <span className="text-xl font-bold gradient-text">
+                  ThreadHopper
+                </span>
               </div>
 
               <div className="flex flex-wrap gap-8 text-sm text-muted-foreground">
-                <a href="/" className="hover:text-primary transition-colors">Home</a>
-                <a href="#features" className="hover:text-primary transition-colors">Features</a>
-                <a href="/pricing" className="hover:text-primary transition-colors">Pricing</a>
-                <a href="/docs" className="hover:text-primary transition-colors">Docs</a>
-                <a href="/about" className="hover:text-primary transition-colors">About</a>
+                <a href="/" className="hover:text-primary transition-colors">
+                  Home
+                </a>
+                <a
+                  href="#features"
+                  className="hover:text-primary transition-colors"
+                >
+                  Features
+                </a>
+                <a
+                  href="/pricing"
+                  className="hover:text-primary transition-colors"
+                >
+                  Pricing
+                </a>
+                <a
+                  href="/docs"
+                  className="hover:text-primary transition-colors"
+                >
+                  Docs
+                </a>
+                <a
+                  href="/about"
+                  className="hover:text-primary transition-colors"
+                >
+                  About
+                </a>
               </div>
 
               <p className="text-sm text-muted-foreground">
